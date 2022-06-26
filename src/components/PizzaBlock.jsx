@@ -1,38 +1,35 @@
-
 import React from "react";
 
-export const PizzaBlock = () => {
-  const [count, setCount] = React.useState(0);
+export const PizzaBlock = ({ imageUrl, title, price, sizes, types }) => {
   
-  const addPizza = () => {
-    setCount(count +1)
-  }
+  const [activeType, setActiveType] = React.useState(0)
+  const [activeSize, setActiveSize] = React.useState(0);
+
+  const typeNames = ["тонкое", "традиционное"]
 
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
-      />
-      <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+      <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((type, i) => (
+            <li onClick={()=>setActiveType(type)} className={activeType === type ? "active" : ""} key={i}>
+              {typeNames[type]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => (
+            <li onClick={()=>setActiveSize(i)} className={activeSize === i ? "active" : ""} key={i}>
+              {size} см
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от 395 ₽</div>
-        <button
-          onClick={addPizza}
-          className="button button--outline button--add"
-        >
+        <div className="pizza-block__price">от {price} ₽</div>
+        <button className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -46,7 +43,7 @@ export const PizzaBlock = () => {
             />
           </svg>
           <span>Добавить</span>
-          <i>{count}</i>
+          <i>{0}</i>
         </button>
       </div>
     </div>
