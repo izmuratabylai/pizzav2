@@ -17,12 +17,13 @@ function App() {
       <div className="content">
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home/> } />
+            <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/cart" element={<Cart/> } />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
+          <h3 style={{textAlign: 'center'}}>© 2022 Made with ❤️ in Taraz</h3>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }
