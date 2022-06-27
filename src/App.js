@@ -3,10 +3,14 @@ import { Catefories } from "./components/Catefories";
 import { Header } from "./components/Header";
 import { PizzaBlock } from "./components/PizzaBlock";
 import { Sort } from "./components/Sort";
+import CircularProgress from "@mui/material/CircularProgress";
+
+
 import "./scss/app.scss";
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [loading, setloading] = React.useState(true);
 
   React.useEffect(() => {
     fetch("https://62b407a7a36f3a973d2a6c2b.mockapi.io/items")
@@ -15,6 +19,7 @@ function App() {
       })
       .then((arr) => {
         setItems(arr);
+        setloading(false)
       });
   }, []);
 
@@ -29,9 +34,13 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            {items.map((pizza) => (
-              <PizzaBlock key={pizza.id} {...pizza} />
-            ))}
+            {items.map((pizza,i) =>
+              loading ? (
+                <CircularProgress key={i} />
+              ) : (
+                <PizzaBlock key={pizza.id} {...pizza} />
+              )
+            )}
           </div>
         </div>
       </div>
