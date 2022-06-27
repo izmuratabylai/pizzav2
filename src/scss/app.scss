@@ -15,6 +15,11 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+
+  @media (max-width:645px) {
+    width: calc(100vw - 30px);
+    margin-top: 20px;
+  }
 }
 
 .content {
@@ -53,6 +58,16 @@ body {
         flex-direction: column-reverse;
         .categories{
           margin-top: 30px;
+          width: 100%;
+          overflow: scroll;
+          ul{
+            width: 785px;
+          }
+          .sort{
+            b{
+              display: none;
+            }
+          }
         }
       }
   }
@@ -78,7 +93,9 @@ body {
     align-items: center;
     
   }
-
+.content__items{
+display: block;
+}
   .content__title {
     display: flex;
     align-items: center;
