@@ -9,13 +9,16 @@ import { Cart } from "./pages/Cart.jsx";
 import "./scss/app.scss";
 
 function App() {
+
+  const [searchValue, setSearchValue] =React.useState('')
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
       <div className="content">
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home searchValue={searchValue} />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>

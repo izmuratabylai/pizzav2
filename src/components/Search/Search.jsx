@@ -1,8 +1,13 @@
-import React from 'react'
-import styles  from './search.modules.scss'
+import React from "react";
+import styles from "./search.modules.scss";
 
-export const Search = () => {
+export const Search = ({ searchValue, setSearchValue }) => {
   return (
-      <input className="root" placeholder='Поиск пиццы' />
-  )
-}
+    <input
+      value={searchValue}
+      onChange={(e) => setSearchValue(e.target.value)}
+      className="root"
+      placeholder="Поиск пиццы"
+    />
+  );
+};
