@@ -3,17 +3,20 @@ import { Link } from "react-router-dom";
 
 import logo from "../img/pizza-logo.svg";
 
+import { Search } from "./Search/Search";
+
 export const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <Link to='/' className="header__logo">
+        <Link to="/" className="header__logo">
           <img width="38" src={logo} alt="Pizza logo" />
           <div>
             <h1>TRZ PIZZA</h1>
             <p>самая вкусная пицца во вселенной</p>
           </div>
         </Link>
+        <Search />
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>520 ₽</span>
