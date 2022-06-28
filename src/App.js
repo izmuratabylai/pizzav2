@@ -1,30 +1,35 @@
 import React from "react";
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home.jsx";
-import { NotFound } from './pages/NotFound.jsx'
+import { NotFound } from "./pages/NotFound.jsx";
 import { Cart } from "./pages/Cart.jsx";
 
 import "./scss/app.scss";
 
-function App() {
+export const SearchContext = React.createContext();
 
-  const [searchValue, setSearchValue] =React.useState('')
+function App() {
+  const [searchValue, setSearchValue] = React.useState("");
 
   return (
     <div className="wrapper">
-      <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
-      <div className="content">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home searchValue={searchValue} />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-          <h3 style={{textAlign: 'center'}}>© 2022 Made with ❤️ in Taraz</h3>
+      <SearchContext.Provider value={{searchValue,setSearchValue}}>
+        <Header  />
+        <div className="content">
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home  />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+            <h3 style={{ textAlign: "center" }}>
+              © 2022 Made with ❤️ in Taraz
+            </h3>
+          </div>
         </div>
-      </div> 
+      </SearchContext.Provider>
     </div>
   );
 }

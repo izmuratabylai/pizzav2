@@ -5,7 +5,9 @@ import { Sort } from "../components/Sort";
 import { PizzaBlock } from "../components/PizzaBlock";
 import { CircularProgress } from "@mui/material";
 
-export const Home = ({ searchValue }) => {
+import { SearchContext } from "../App";
+
+export const Home = () => {
   const [items, setItems] = React.useState([]);
   const [loading, setloading] = React.useState(true);
   const [catrgoryId, setCategoryId] = React.useState(0);
@@ -13,6 +15,8 @@ export const Home = ({ searchValue }) => {
     name: "популярности",
     sortProperty: "rating",
   });
+
+  const {searchValue} = React.useContext(SearchContext)
 
  
   React.useEffect(() => {
