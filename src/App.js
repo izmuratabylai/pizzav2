@@ -6,11 +6,20 @@ import { Home } from "./pages/Home.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Cart } from "./pages/Cart.jsx";
 
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./redux/filterSlice";
+
+
 import "./scss/app.scss";
 
 export const SearchContext = React.createContext();
 
 function App() {
+
+  const filter = useSelector((state) =>state.filterSliceReducer.value)
+  const dispatch = useDispatch()
+  console.log(filter)
+
   const [searchValue, setSearchValue] = React.useState("");
 
   return (
