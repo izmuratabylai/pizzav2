@@ -6,8 +6,6 @@ import { Home } from "./pages/Home.jsx";
 import { NotFound } from './pages/NotFound.jsx'
 import { Cart } from "./pages/Cart.jsx";
 
-
-
 import "./scss/app.scss";
 
 function App() {
