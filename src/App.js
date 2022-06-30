@@ -16,7 +16,7 @@ export const SearchContext = React.createContext();
 function App() {
   const filter = useSelector((state) => state.filterSliceReducer.value);
   const dispatch = useDispatch();
- 
+  console.log(filter);
 
   const [searchValue, setSearchValue] = React.useState("");
 
