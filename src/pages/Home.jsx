@@ -6,6 +6,7 @@ import { PizzaBlock } from "../components/PizzaBlock";
 import { CircularProgress } from "@mui/material";
 
 import { SearchContext } from "../App";
+import axios from "axios";
 
 export const Home = () => {
   const [items, setItems] = React.useState([]);
@@ -16,24 +17,22 @@ export const Home = () => {
     sortProperty: "rating",
   });
 
-  const {searchValue} = React.useContext(SearchContext)
+  const { searchValue } = React.useContext(SearchContext);
 
- 
   React.useEffect(() => {
     const search = searchValue ? `search="${searchValue}"` : "";
 
-    fetch(
-      `https://62b407a7a36f3a973d2a6c2b.mockapi.io/items?${
-        catrgoryId > 0 ? `category=${catrgoryId}` : ""
-      }&sortBy=${sortType.sortProperty}${search}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
-        setloading(false);
+    axios
+      .get(
+        `https://62b407a7a36f3a973d2a6c2b.mockapi.io/items?${
+          catrgoryId > 0 ? `category=${catrgoryId}` : ""
+        }&sortBy=${sortType.sortProperty}${search}`
+      )
+      .then((response) => {
+        setItems(response.data);
+        setloading(false)
       });
+
     window.scrollTo(0, 0);
   }, [catrgoryId, sortType, searchValue]);
 
